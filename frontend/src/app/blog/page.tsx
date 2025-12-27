@@ -1,46 +1,34 @@
-type Post = {
-  id: number;
-  title: string;
-  excerpt: string;
-  slug: string;
-};
-
-const mockPosts: Post[] = [
+const posts = [
   {
-    id: 1,
-    title: "How I design OTP service in Spring Boot",
-    excerpt: "A clean and scalable approach for OTP generation and validation.",
-    slug: "otp-service-spring-boot",
+    title: 'Understanding React Server Components',
+    slug: 'react-server-components',
+    summary: 'How RSC works in Next.js App Router',
   },
   {
-    id: 2,
-    title: "Spring Boot vs Spring MVC",
-    excerpt: "Understanding the real difference with practical examples.",
-    slug: "spring-boot-vs-spring-mvc",
+    title: 'Next.js 13 Routing Explained',
+    slug: 'nextjs-routing',
+    summary: 'Layouts, pages, and nested routing',
   },
 ];
 
 export default function BlogPage() {
   return (
-    <section className="space-y-8">
-      <h2 className="text-3xl font-bold">Blog</h2>
+    <section className="space-y-6">
+      <h1 className="text-2xl font-bold">📚 Blog</h1>
 
-      <div className="space-y-6">
-        {mockPosts.map((post) => (
-          <article
-            key={post.id}
-            className="rounded border bg-white p-5 hover:shadow"
+      <ul className="space-y-4">
+        {posts.map((post) => (
+          <li
+            key={post.slug}
+            className="rounded border bg-white p-4 hover:shadow"
           >
-            <h3 className="text-xl font-semibold">
-              <a href={`/blog/${post.slug}`} className="hover:underline">
-                {post.title}
-              </a>
-            </h3>
-
-            <p className="mt-2 text-gray-600">{post.excerpt}</p>
-          </article>
+            <a href={`/blog/${post.slug}`}>
+              <h2 className="text-lg font-semibold">{post.title}</h2>
+              <p className="text-gray-600">{post.summary}</p>
+            </a>
+          </li>
         ))}
-      </div>
+      </ul>
     </section>
   );
 }
