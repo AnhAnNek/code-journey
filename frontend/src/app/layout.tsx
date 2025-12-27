@@ -1,9 +1,8 @@
-import type { Metadata } from "next";
+import './globals.css';
 
-export const metadata: Metadata = {
-  title: "Code Journey",
-  description:
-    "A developer blog about software engineering, backend, and fullstack journey",
+export const metadata = {
+  title: 'Code Journey',
+  description: 'Personal blog about software engineering',
 };
 
 export default function RootLayout({
@@ -15,29 +14,20 @@ export default function RootLayout({
     <html lang="en">
       <body className="min-h-screen bg-gray-50 text-gray-900">
         <header className="border-b bg-white">
-          <div className="mx-auto max-w-5xl px-4 py-4 flex justify-between">
-            <h1 className="font-bold text-lg">Code Journey</h1>
-            <nav className="space-x-4 text-sm">
-              <a href="/" className="hover:underline">
-                Home
-              </a>
-              <a href="/blog" className="hover:underline">
-                Blog
-              </a>
-              <a href="/admin" className="hover:underline">
-                Admin
-              </a>
-            </nav>
-          </div>
+          <nav className="mx-auto max-w-5xl px-6 py-4 flex gap-6">
+            <a href="/" className="font-bold">
+              Code Journey
+            </a>
+            <a href="/blog" className="text-gray-600 hover:text-black">
+              Blog
+            </a>
+            <a href="/about" className="text-gray-600 hover:text-black">
+              About
+            </a>
+          </nav>
         </header>
 
-        <main className="mx-auto max-w-5xl px-4 py-8">{children}</main>
-
-        <footer className="border-t bg-white">
-          <div className="mx-auto max-w-5xl px-4 py-4 text-sm text-gray-500">
-            © {new Date().getFullYear()} Code Journey
-          </div>
-        </footer>
+        <main className="mx-auto max-w-5xl px-6 py-8">{children}</main>
       </body>
     </html>
   );
