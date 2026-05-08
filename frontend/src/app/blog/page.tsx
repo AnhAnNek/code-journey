@@ -1,34 +1,46 @@
-const posts = [
-  {
-    title: 'Understanding React Server Components',
-    slug: 'react-server-components',
-    summary: 'How RSC works in Next.js App Router',
+import type { Metadata } from 'next';
+import { getAllPosts } from '@/features/blog/data';
+import { BlogCard } from '@/components/molecules/BlogCard';
+
+export const metadata: Metadata = {
+  title: 'Blog',
+  description:
+    'Articles about Java, Spring Boot, Next.js, and real-world software engineering practices.',
+  openGraph: {
+    title: 'Blog | Code Journey',
+    description:
+      'Articles about Java, Spring Boot, Next.js, and real-world software engineering practices.',
   },
-  {
-    title: 'Next.js 13 Routing Explained',
-    slug: 'nextjs-routing',
-    summary: 'Layouts, pages, and nested routing',
-  },
-];
+};
 
 export default function BlogPage() {
-  return (
-    <section className="space-y-6">
-      <h1 className="text-2xl font-bold">📚 Blog</h1>
+  const posts = getAllPosts();
 
-      <ul className="space-y-4">
+  return (
+    <section className="space-y-8">
+      {/* Page header */}
+      <div className="space-y-2">
+        <h1 className="text-3xl font-bold tracking-tight">Blog</h1>
+        <p className="text-muted-foreground">
+          Thoughts on software engineering, architecture, and the tools I use
+          every day.
+        </p>
+      </div>
+
+      {/* Post grid */}
+      <div className="grid gap-6 sm:grid-cols-2">
         {posts.map((post) => (
-          <li
+          <BlogCard
             key={post.slug}
-            className="rounded border bg-white p-4 hover:shadow"
-          >
-            <a href={`/blog/${post.slug}`}>
-              <h2 className="text-lg font-semibold">{post.title}</h2>
-              <p className="text-gray-600">{post.summary}</p>
-            </a>
-          </li>
+            slug={post.slug}
+            title={post.title}
+            description={post.description}
+            publishDate={post.publishDate}
+            tags={post.tags}
+            readingTime={post.readingTime}
+          />
         ))}
-      </ul>
+      </div>
     </section>
   );
 }
